@@ -17,7 +17,7 @@ class User(db.Model):
     name = db.Column(db.Text(255))
     email = db.Column(db.Text(255))
     birthdate = db.Column(db.DateTime, default=db.func.current_timestamp())
-    sex = db.Column(db.Text(10))  # ho/han
+    sex = db.Column(db.Text(255))
 
     def __repr__(self):
         return "<User(deviceid={})>".format(self.deviceid)
