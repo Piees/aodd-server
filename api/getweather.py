@@ -17,11 +17,15 @@ def getWeather(lat, long):
         weather = responsedict['weather'][0]['main']
         weatherdesc = responsedict['weather'][0]['description']
         windspeed = responsedict['wind']['speed']
+        temperature = str(int(responsedict['main']['temp']) - 273.15)
         response = {
             'weather': weather,
             'weatherdesc': weatherdesc,
-            'windspeed': windspeed
+            'windspeed': windspeed,
+            'temperature': temperature
         }
     except Exception:
         response = responsedict
     return json.dumps(response)
+
+#print getWeather(63, 12)
