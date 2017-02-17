@@ -20,8 +20,7 @@ class User(db.Model):
     sex = db.Column(db.Text(10))  # ho/han
 
     def __repr__(self):
-        return "<User(id={}, fname={}, lname={} date={})>".format(
-            self.id, self.fname, self.lname, self.date)
+        return "<User(deviceid={})>".format(self.deviceid)
 
     def __init__(self, deviceid):
         self.deviceid = deviceid
