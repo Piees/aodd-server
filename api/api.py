@@ -4,13 +4,28 @@ from flask import Flask, jsonify
 from flask_restful import Resource, Api
 from getweather import getWeather
 from flask_cors import CORS, cross_origin
-from models import Categories, Product, db
+from models import Categories, Product, db, User
 from idsbydistance import getIdsByDistance
 import json
 
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
+
+
+class userByDeviceid(Resource):
+    def get(self, deviceid):
+        request = User.query.filter_by(deviceid=deviceid).first()
+        request.__dict__.pop("_sa_instance_state")
+        response = request.__dict__
+        return response
+
+    def post(self, deviceid):
+        usr = User(deviceid)
+        db.session.add(usr)
+        db.session.commit()
+        response = usr.deviceid
+        return {'User created with id:': response}
 
 
 class getsWeather(Resource):
@@ -62,6 +77,7 @@ class getProductsByDistanceAndCategory(Resource):
             print temp
         return response'''
 
+api.add_resource(userByDeviceid, '/api/users/<string:deviceid>')
 api.add_resource(getProducts, '/api/products')
 api.add_resource(getProductsByDistance,
                  '/api/products/<string:lat>/<string:long>/<string:distance>')
