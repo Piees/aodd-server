@@ -87,23 +87,6 @@ class getProductsByDistance(Resource):
         return response
 
 
-'''
-class getProductsByDistanceAndCategory(Resource):
-    def get(self, lat, long, distance, category):
-        idslist = getIdsByDistance(lat, long, distance)
-        response = []
-        for x in idslist:
-            print x
-            catName = Categories.query.filter_by(name=category).all()
-            catlist = []
-            temp = Product.query.filter_by(id=x).first()
-            if temp != None:
-                k = temp.__dict__
-                k.pop("_sa_instance_state")
-                response.append(k)
-            print temp
-        return response'''
-
 api.add_resource(getCategory, '/api/categories/<string:id>')
 api.add_resource(
     postTrackEvent,
