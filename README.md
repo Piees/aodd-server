@@ -10,3 +10,4 @@ API Endpoint | Description
 /api/products/<string:lat>/<string:long>/<string:distance> | GET- products within distance
 /api/getweather/<string:lat>/<string:long> | GET - Current weather forecast
 /api/trackevent/<string:lat>/<string:long>/<string:deviceid>/<string:productid> | POST - Single trackevent
+/api/users/<string:deviceid>/points/<string:points> | PUT - Update users points to new value
