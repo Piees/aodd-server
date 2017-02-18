@@ -55,6 +55,15 @@ class userByDeviceid(Resource):
         return {'User created with id: ': response}
 
 
+class updateUserPoints(Resource):
+    def put(self, deviceid, points):
+        usr = User.query.filter_by(deviceid=deviceid).first()
+        usr.points = points
+        db.session.add(usr)
+        db.session.commit()
+        return {'User new total points: ': usr.points}
+
+
 class getsWeather(Resource):
     def get(self, lat, long):
         response = getWeather(lat, long)
@@ -77,16 +86,28 @@ class getProductsByDistance(Resource):
         idslist = getIdsByDistance(lat, long, distance)
         response = []
         for x in idslist:
-            print x
             temp = Product.query.filter_by(id=x).first()
             if temp != None:
                 k = temp.__dict__
                 k.pop("_sa_instance_state")
                 response.append(k)
-            print temp
         return response
 
 
+'''class getProductsByDistanceAndCategory(Resource):
+    def get(self, lat, long, distance):
+        idslist = getIdsByDistance(lat, long, distance)
+        response = []
+        for x in idslist:
+            temp = Product.query.filter_by(id=x).first()
+            if temp != None:
+                k = temp.__dict__
+                k.pop("_sa_instance_state")
+                response.append(k)
+        return response'''
+
+api.add_resource(updateUserPoints,
+                 '/api/users/<string:deviceid>/points/<string:points>')
 api.add_resource(getCategory, '/api/categories/<string:id>')
 api.add_resource(
     postTrackEvent,
