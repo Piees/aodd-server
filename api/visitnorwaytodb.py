@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from models import Categories, Product, db
-from visitnorwaydata import visitnorway, visitcategories
+from visitnorwaydata import visitnorway, categories
+
+for x in categories:
+    cat = Categories()
+    cat.id = x['id']
+    cat.name = x['name']
+    db.session.add(cat)
+    db.session.commit()
 
 for x in visitnorway:
     if x['geoLocation'] != None:
@@ -18,17 +25,4 @@ for x in visitnorway:
             prod.alternativeText = x['image']['alternativeText']
         prod.categories = cat
         db.session.add(prod)
-db.session.commit()
-
-for x in visitcategories['subcategories']:
-    for y in x['subcategories']:
-        cat = Categories()
-        cat.name = y['name']
-        cat.code = y['code']
-        db.session.add(cat)
-        for k in y['subcategories']:
-            cat = Categories()
-            cat.name = k['name']
-            cat.code = k['code']
-            db.session.add(cat)
-    db.session.commit()
+        db.session.commit()
