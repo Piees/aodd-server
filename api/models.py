@@ -50,7 +50,7 @@ class Product(db.Model):
 class Categories(db.Model):
     __tablename__ = 'categories'
 
-    id = db.Column(db.INTEGER, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text(255))
     code = db.Column(db.Text(255))
 
