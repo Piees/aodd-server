@@ -32,6 +32,14 @@ class getCategories(Resource):
         return response
 
 
+class getCategory(Resource):
+    def get(self, id):
+        request = Categories.query.filter_by(id=id).first()
+        request.__dict__.pop("_sa_instance_state")
+        response = request.__dict__
+        return response
+
+
 class userByDeviceid(Resource):
     def get(self, deviceid):
         request = User.query.filter_by(deviceid=deviceid).first()
@@ -96,6 +104,7 @@ class getProductsByDistanceAndCategory(Resource):
             print temp
         return response'''
 
+api.add_resource(getCategory, '/api/categories/<string:id>')
 api.add_resource(
     postTrackEvent,
     '/api/trackevent/<string:lat>/<string:long>/<string:deviceid>/<string:productid>'
