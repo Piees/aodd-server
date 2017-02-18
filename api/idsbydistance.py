@@ -17,13 +17,9 @@ def getIdsByDistance(lat, long, maxdistance):
     responsedict = json.loads(request)
     response = []
     for x in responsedict:
-        print x
         try:
             if x['id'] != None:
                 response.append(x['id'])
         except:
-            if x[0]['id'] != None:
-                response.append(x['id'])
+            print "Could not find id"
     return response
-
-#print getIdsByDistance(58.14973380000001, 7.9980118, 100)
