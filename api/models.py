@@ -77,10 +77,14 @@ class TrackEvent(db.Model):
         'User', backref=db.backref(
             'trackevents', lazy='dynamic'))
 
-    def __init__(self, lat, long):
-        weathertemp = json.dumps(getWeather(lat, long))
+    def __init__(self, lat, long, deviceid, productid):
+        weathertemp = getWeather(lat, long)
         self.temperature = weathertemp['temperature']
         self.snow = weathertemp['snow']
         self.rain = weathertemp['rain']
         self.weather = weathertemp['weather']
         self.weatherdesc = weathertemp['weatherdesc']
+        usr = User.query.filter_by(deviceid=deviceid).first()
+        self.user = usr
+        prod = Product.query.filter_by(id=productid).first()
+        self.product = prod

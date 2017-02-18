@@ -4,13 +4,22 @@ from flask import Flask, jsonify
 from flask_restful import Resource, Api
 from getweather import getWeather
 from flask_cors import CORS, cross_origin
-from models import Categories, Product, db, User
+from models import Categories, Product, db, User, TrackEvent
 from idsbydistance import getIdsByDistance
 import json
 
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
+
+
+class postTrackEvent(Resource):
+    def post(self, lat, long, deviceid, productid):
+        trackE = TrackEvent(lat, long, deviceid, productid)
+        db.session.add(trackE)
+        db.session.commit()
+        response = trackE.id
+        return {'TrackEven created with id: ': response}
 
 
 class getCategories(Resource):
@@ -35,7 +44,7 @@ class userByDeviceid(Resource):
         db.session.add(usr)
         db.session.commit()
         response = usr.deviceid
-        return {'User created with id:': response}
+        return {'User created with id: ': response}
 
 
 class getsWeather(Resource):
@@ -87,6 +96,10 @@ class getProductsByDistanceAndCategory(Resource):
             print temp
         return response'''
 
+api.add_resource(
+    postTrackEvent,
+    '/api/trackevent/<string:lat>/<string:long>/<string:deviceid>/<string:productid>'
+)
 api.add_resource(getCategories, '/api/categories')
 api.add_resource(userByDeviceid, '/api/users/<string:deviceid>')
 api.add_resource(getProducts, '/api/products')
