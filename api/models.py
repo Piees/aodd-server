@@ -52,7 +52,6 @@ class Categories(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text(255))
-    code = db.Column(db.Text(255))
 
 
 class TrackEvent(db.Model):
