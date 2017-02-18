@@ -85,7 +85,7 @@ class TrackEvent(db.Model):
         'Product', backref=db.backref(
             'trackevents', lazy='dynamic'))
 
-    deviceid = db.Column(db.INTEGER, db.ForeignKey('user.deviceid'))
+    deviceid = db.Column(db.Text(255), db.ForeignKey('user.deviceid'))
     user = db.relationship(
         'User', backref=db.backref(
             'trackevents', lazy='dynamic'))
