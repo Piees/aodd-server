@@ -37,7 +37,7 @@ def getWeather(lat, long):
         }
     except Exception:
         response = responsedict
-    return json.dumps(response)
+    return response
 
 
 print getWeather(63.430515, 10.3950530)
