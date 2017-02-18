@@ -34,6 +34,3 @@ for x in categoriesholder:
                 'id': x['categories'][0]['id'],
                 'name': x['categories'][0]['name']
             })
-
-for x in categories:
-    print x['id'], x['name']

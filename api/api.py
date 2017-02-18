@@ -103,8 +103,6 @@ class getProductsByDistanceAndCategory(Resource):
             if temp != None:
                 k = temp.__dict__
                 k.pop("_sa_instance_state")
-                print "kval", k['categoriesid']
-                print str(categoriesid)
                 if str(k['categoriesid']) == str(categoriesid):
                     response.append(k)
         return response
