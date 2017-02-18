@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     __tablename__ = 'user'
 
-    deviceid = db.Column(db.Text(255), primary_key=True)
+    deviceid = db.Column(db.String(24), primary_key=True)
     name = db.Column(db.Text(255))
     email = db.Column(db.Text(255))
     age = db.Column(db.INTEGER)
@@ -85,7 +85,7 @@ class TrackEvent(db.Model):
         'Product', backref=db.backref(
             'trackevents', lazy='dynamic'))
 
-    deviceid = db.Column(db.Text(255), db.ForeignKey('user.deviceid'))
+    deviceid = db.Column(db.String(24), db.ForeignKey('user.deviceid'))
     user = db.relationship(
         'User', backref=db.backref(
             'trackevents', lazy='dynamic'))
