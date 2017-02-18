@@ -94,8 +94,8 @@ class getProductsByDistance(Resource):
         return response
 
 
-'''class getProductsByDistanceAndCategory(Resource):
-    def get(self, lat, long, distance):
+class getProductsByDistanceAndCategory(Resource):
+    def get(self, lat, long, distance, categoriesid):
         idslist = getIdsByDistance(lat, long, distance)
         response = []
         for x in idslist:
@@ -103,8 +103,12 @@ class getProductsByDistance(Resource):
             if temp != None:
                 k = temp.__dict__
                 k.pop("_sa_instance_state")
-                response.append(k)
-        return response'''
+                print "kval", k['categoriesid']
+                print str(categoriesid)
+                if str(k['categoriesid']) == str(categoriesid):
+                    response.append(k)
+        return response
+
 
 api.add_resource(updateUserPoints,
                  '/api/users/<string:deviceid>/points/<string:points>')
@@ -118,6 +122,10 @@ api.add_resource(userByDeviceid, '/api/users/<string:deviceid>')
 api.add_resource(getProducts, '/api/products')
 api.add_resource(getProductsByDistance,
                  '/api/products/<string:lat>/<string:long>/<string:distance>')
+api.add_resource(
+    getProductsByDistanceAndCategory,
+    '/api/products/<string:lat>/<string:long>/<string:distance>/<string:categoriesid>'
+)
 api.add_resource(getsWeather, '/api/getweather/<string:lat>/<string:long>')
 
 if __name__ == '__main__':
