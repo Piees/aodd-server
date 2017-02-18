@@ -19,5 +19,4 @@ def getIdsByDistance(lat, long, maxdistance):
             response.append(x['id'])
     return response
 
-
-print getIdsByDistance(58.14973380000001, 7.9980118, 100)
+#print getIdsByDistance(58.14973380000001, 7.9980118, 100)
