@@ -11,7 +11,7 @@ host = "46.101.200.118"
 ## returns ids in list by distance
 ## may return 405
 def getIdsByDistance(lat, long, maxdistance):
-    url = 'http://api.visitnorway.com/products?latitude={}&longitude={}&maxdistance={}'.format(
+    url = 'http://api.visitnorway.com/products?latitude={}&longitude={}&maxdistance={}&limit=10000'.format(
         lat, long, maxdistance)
     request = requests.get(url, headers=header).text
     responsedict = json.loads(request)
