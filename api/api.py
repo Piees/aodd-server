@@ -7,7 +7,6 @@ from flask_cors import CORS, cross_origin
 from models import Categories, Product, db
 from idsbydistance import getIdsByDistance
 import json
-from latlongbydistance import getLatLongByDistance
 
 app = Flask(__name__)
 CORS(app)
