@@ -42,7 +42,3 @@ def getWeather(lat, long):
     except Exception:
         response = responsedict
     return response
-
-
-print getWeather(63.430515, 10.3950530)
-#print getWeather(12, 12)
