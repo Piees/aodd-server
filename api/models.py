@@ -17,9 +17,11 @@ class User(db.Model):
     deviceid = db.Column(db.INTEGER, primary_key=True)
     name = db.Column(db.Text(255))
     email = db.Column(db.Text(255))
-    birthdate = db.Column(db.DateTime, default=db.func.current_timestamp())
-    sex = db.Column(db.Text(255))
+    age = db.Column(db.INTEGER)
+    gender = db.Column(db.Text(255))
     points = db.Column(db.INTEGER)
+    occupation = db.Column(db.Text(255))
+    city = db.Column(db.Text(255))
 
     def __repr__(self):
         return "<User(deviceid={})>".format(self.deviceid)
