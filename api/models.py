@@ -54,19 +54,6 @@ class Categories(db.Model):
     name = db.Column(db.Text(255))
     code = db.Column(db.Text(255))
 
-#[{"id":"7651",
-#"name":"Ådneram Cabin",
-#"geoLocation":{"latitude":59.01785,"longitude":6.93066,"elevation":0},
-#"image":{"url":"http://media.tellus.no/images/?d=354&p=758&t=1",
-#"alternativeText":"Ådneram Turisthytte","copyright":"Ådneram Turisthytte"},"hasFoodPrints":false,"hasGreenTravel":false,
-
-#"categories":[{
-#"id":"23",
-#"name":"Hotels & More","code":null}],
-#"owner":"Lister Reiseliv","ownerId":null,"address":"Undergangen v/Rogaland Teater","contact":{"address":"Undergangen v/Rogaland Teater","email":"informasjon@stavanger-turistforening.no","fax":null,"mobile":null,"phone":" +47 51840200","streetAddress":null,"postalCode":"4001","city":"Sirdal","web":"http://www.stavanger-turistforening.no","bookingUrl":"","county":{"code":11,"name":"ROGALAND"},"municipality":{"code":1103,"name":"STAVANGER"}},"startTimeToday":null,"endTimeToday":null,"distanceFromClient":0,"tripAdvisorProduct":null,"externalSystemId":null,"externalSource":null,"searchResultScore":1}
-
-## do later
-
 
 class TrackEvent(db.Model):
     __tablename__ = 'trackevent'
