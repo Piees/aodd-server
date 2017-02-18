@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     __tablename__ = 'user'
 
-    deviceid = db.Column(db.INTEGER, primary_key=True)
+    deviceid = db.Column(db.Text(255), primary_key=True)
     name = db.Column(db.Text(255))
     email = db.Column(db.Text(255))
     age = db.Column(db.INTEGER)
