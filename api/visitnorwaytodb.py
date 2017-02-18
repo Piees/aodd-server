@@ -7,6 +7,7 @@ for x in visitnorway:
         cat = Categories.query.filter_by(
             name=x['categories'][0]['name']).first()
         prod = Product()
+        prod.id = x['id']
         prod.name = x['name']
         prod.lat = x['geoLocation']['latitude']
         prod.long = x['geoLocation']['longitude']
