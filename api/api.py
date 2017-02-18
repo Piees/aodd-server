@@ -13,6 +13,16 @@ CORS(app)
 api = Api(app)
 
 
+class getCategories(Resource):
+    def get(self):
+        request = Categories.query.all()
+        response = []
+        for x in request:
+            x.__dict__.pop("_sa_instance_state")
+            response.append(x.__dict__)
+        return response
+
+
 class userByDeviceid(Resource):
     def get(self, deviceid):
         request = User.query.filter_by(deviceid=deviceid).first()
@@ -77,6 +87,7 @@ class getProductsByDistanceAndCategory(Resource):
             print temp
         return response'''
 
+api.add_resource(getCategories, '/api/categories')
 api.add_resource(userByDeviceid, '/api/users/<string:deviceid>')
 api.add_resource(getProducts, '/api/products')
 api.add_resource(getProductsByDistance,
