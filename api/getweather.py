@@ -20,6 +20,7 @@ def getWeather(lat, long):
         weatherdesc = responsedict['weather'][0]['description']
         windspeed = responsedict['wind']['speed']
         temperature = str(int(responsedict['main']['temp']) - 273.15)
+        cityName = responsedict['name']
 
         rain = 0.0
         if 'rain' in responsedict:
@@ -35,7 +36,8 @@ def getWeather(lat, long):
             'windspeed': windspeed,
             'temperature': temperature,
             'rain': rain,
-            'snow': snow
+            'snow': snow,
+            'cityName': cityName
         }
     except Exception:
         response = responsedict
